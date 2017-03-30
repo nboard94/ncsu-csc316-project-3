@@ -12,7 +12,7 @@ public class ArrayBasedList<E> {
 
 	/** The number of objects in the array. */
 	private int size;
-	/** The generic array of objects. */
+	/** The array of objects. */
 	private E[] items;
 
 	/**
@@ -21,7 +21,7 @@ public class ArrayBasedList<E> {
 	public ArrayBasedList() {
 		
 		size = 0;
-		items = (E[]) new Object[10];
+		items = (E[]) new Object[1];
 	}
 	
 	/**
@@ -43,9 +43,9 @@ public class ArrayBasedList<E> {
 		
 		E removed = items[idx];
 		
-		for( int i = idx; i < size; i++ ) {
+		for( int i = idx; i < size - 1; i++ ) {
 			
-			items[idx] = items[idx + 1];
+			items[i] = items[i + 1];
 		}
 		size--;
 		
@@ -59,7 +59,7 @@ public class ArrayBasedList<E> {
 	 */
 	public void insert( Object o ) {
 
-		if ( items.length == size - 1 )
+		if ( items.length == size )
 			items = resize(items);
 		
 		items[ size ] = (E) o;
@@ -74,7 +74,7 @@ public class ArrayBasedList<E> {
 	 */
 	public void insertAt( Object o, int idx ) {
 		
-		if ( items.length == size - 1 )
+		if ( items.length == size )
 			items = resize(items);
 		
 		for( int i = idx; i < size; i++ ) {
@@ -86,11 +86,6 @@ public class ArrayBasedList<E> {
 		size++;
 	}
 
-	
-
-	
-
-	
 	/**
 	 * Sets an item into a slot in the ArrayBasedList.
 	 * @param slot The slot to set the new item at.
