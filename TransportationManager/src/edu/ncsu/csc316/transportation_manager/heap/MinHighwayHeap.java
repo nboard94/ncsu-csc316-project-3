@@ -1,9 +1,32 @@
 package edu.ncsu.csc316.transportation_manager.heap;
 
 import edu.ncsu.csc316.transportation_manager.highway.Highway;
+import edu.ncsu.csc316.transportation_manager.list.ArrayBasedList;
+import edu.ncsu.csc316.transportation_manager.util.Type;
 
 public class MinHighwayHeap {
 
+	private class Node {
+		
+		int position;
+		Highway data;
+		Node leftChild;
+		Node rightChild;
+		
+		Node( int position, Highway data) {
+			
+			this.position = position;
+			this.data = data;
+			
+		}
+	}
+	
+	private ArrayBasedList<Node> minHeap = new ArrayBasedList<Node>();
+	private int size;
+	private Type type;
+	
+	private static final int FRONT = 1;
+	
 	/**
 	* Constructs a new Highway heap
 	* 
@@ -11,7 +34,13 @@ public class MinHighwayHeap {
 	*         operating on the heap
 	*/
 	public MinHighwayHeap(String type) {
-	    // Your code
+	    
+		if( type.equals("COST") )
+			this.type = Type.COST;
+		else if( type.equals("ASPHALT") )
+			this.type = Type.ASPHALT;
+		
+		this.size = 0;
 	}
 	
 	/**
@@ -19,7 +48,13 @@ public class MinHighwayHeap {
 	 * @param hwy the Highway to insert into the minheap
 	 */
 	public void insert(Highway hwy) {
-	    // Your code
+	    
+		
+		
+		if ( size == 0 ) {
+			
+			
+		}
 	}
 	
 	/**
