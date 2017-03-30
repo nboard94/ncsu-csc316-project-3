@@ -132,7 +132,7 @@ public class ArrayBasedList<E> {
 	 * @param The list to double the size of.
 	 * @return The new list that is doubled. 
 	 */
-	public E[] resize( E[] list ) {
+	private E[] resize( E[] list ) {
 		
 		E[] newList = (E[]) new Object[ size * 2 ];
 		
