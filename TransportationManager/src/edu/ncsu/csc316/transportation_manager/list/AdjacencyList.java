@@ -14,7 +14,7 @@ public class AdjacencyList {
 	 * in the adjacency list.
 	 * @author Nicholas Board (ndboard)
 	 */
-	private class Vertex {
+	public class Vertex {
 		
 		/** The vertex identifier. */
 		int vertex;
@@ -40,7 +40,7 @@ public class AdjacencyList {
 	 * in the adjacency list.
 	 * @author Nicholas Board (ndboard)
 	 */
-	private class Edge {
+	public class Edge {
 		
 		/** The adjVertex identifier. */
 		int adjVertex;
@@ -60,9 +60,9 @@ public class AdjacencyList {
 	}
 	
 	/** Stores the vertices in the adjacency list. */
-	ArrayBasedList<Vertex> adjList;
+	private ArrayBasedList<Vertex> adjList;
 	/** The amount of vertices in the adjacency list. */
-	int vCount;
+	private int vCount;
 	
 	/**
 	 * Constructor for the adjacency list.
@@ -113,6 +113,7 @@ public class AdjacencyList {
 			if( adjList.lookUp(i).vertex == vertex ) {
 				
 				adjList.remove(i);
+				vCount--;
 			}
 		}
 	}
@@ -133,8 +134,32 @@ public class AdjacencyList {
 				if( current.edges.lookUp(j).adjVertex == vertex && current.edges.lookUp(j).edge == edge ) {
 					
 					current.edges.remove(j);
+					current.eCount--;
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Gets the adjacency list.
+	 * @return The adjacency list.
+	 */
+	public ArrayBasedList<Vertex> getVertexList() {
+		
+		return this.adjList;
+	}
+	
+	/**
+	 * Gets the vertex count.
+	 * @return The vertex count.
+	 */
+	public int getVertexCount() {
+		
+		return this.vCount;
+	}
+	
+	public Vertex lookupVertex(int idx) {
+		
+		return this.adjList.lookUp(idx);
 	}
 }
