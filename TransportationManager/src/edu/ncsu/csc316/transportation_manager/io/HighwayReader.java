@@ -1,5 +1,8 @@
 package edu.ncsu.csc316.transportation_manager.io;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import edu.ncsu.csc316.transportation_manager.highway.Highway;
@@ -33,16 +36,26 @@ public class HighwayReader {
 	 * input file, filling in the list of highways.
 	 * @param The filepath to read from.
 	 */
-	public HighwayReader(String filepath) {
+	public HighwayReader(String filepath) throws FileNotFoundException {
 		
-		scan = new Scanner(filepath);
-		city1 = scan.nextInt();
-		city2 = scan.nextInt();
-		cost = scan.nextDouble();
-		asphalt = scan.nextDouble();
+		try {
+			
+			scan = new Scanner(new FileInputStream(filepath), "UTF8");
+		} catch (FileNotFoundException e) {
+			
+			throw new FileNotFoundException();
+		}
 		
-		highway = new Highway(city1, city2, cost, asphalt);
-		highways.insert(highway);
+		while ( scan.hasNextLine() ) {
+			
+			city1 = scan.nextInt();
+			city2 = scan.nextInt();
+			cost = scan.nextDouble();
+			asphalt = scan.nextDouble();
+			
+			highway = new Highway(city1, city2, cost, asphalt);
+			highways.insert(highway);
+		}
 		
 		scan.close();
 	}
