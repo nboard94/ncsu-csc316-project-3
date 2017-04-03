@@ -1,6 +1,7 @@
 package edu.ncsu.csc316.transportation_manager.ui;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import edu.ncsu.csc316.transportation_manager.manager.TransportationManager;
@@ -17,8 +18,9 @@ public class TransportationManagerUI {
 	 * for an input filepath and then for the feature they
 	 * want to minimize.
 	 * @param args Potential command-line arguments.
+	 * @throws FileNotFoundException 
 	 */
-	public static void main(String[] args){
+	public static void main(String[] args) throws FileNotFoundException{
 		
 		/** The path of the input file. */
 		String filepath;
@@ -67,11 +69,14 @@ public class TransportationManagerUI {
 			}
 			else if(minType.toUpperCase().equals("COST")) {
 				
-				manager.getMinimumHighways("COST");
+				//manager.getMinimumHighways("COST");
+				System.out.println( manager.getAdjacencyList() );
+				
 			}
 			else if(minType.toUpperCase().equals("ASPHALT")) {
 				
-				manager.getMinimumHighways("ASPHALT");
+				//manager.getMinimumHighways("ASPHALT");
+				System.out.println( manager.getAdjacencyList() );
 			}
 			else {
 				

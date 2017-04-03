@@ -17,11 +17,11 @@ public class AdjacencyList {
 	public class Vertex {
 		
 		/** The vertex identifier. */
-		int vertex;
+		public int vertex;
 		/** The list of edges to this vertex. */
-		ArrayBasedList<Edge> edges;
+		public ArrayBasedList<Edge> edges;
 		/** The amount of edges incident to this vertex. */
-		int eCount;
+		public int eCount;
 		
 		/**
 		 * Constructs a vertex object.
@@ -43,19 +43,25 @@ public class AdjacencyList {
 	public class Edge {
 		
 		/** The adjVertex identifier. */
-		int adjVertex;
+		public int vertex;
+		public int city1;
+		public int city2;
 		/** The edge identifier. */
-		double edge;
+		public double edgeCost;
+		public double edgeAsphalt;
 		
 		/**
 		 * Constructs an edge object.
 		 * @param The adjVertex identifier.
 		 * @param The edge identifer.
 		 */
-		Edge( int adjVertex, double edge ) {
+		public Edge( int vertex, int city1, int city2, double edgeCost, double edgeAsphalt ) {
 			
-			this.adjVertex = adjVertex;
-			this.edge = edge;
+			this.vertex = vertex;
+			this.city1 = city1;
+			this.city2 = city2;
+			this.edgeCost = edgeCost;
+			this.edgeAsphalt = edgeAsphalt;
 		}
 	}
 	
@@ -75,29 +81,56 @@ public class AdjacencyList {
 	
 	/**
 	 * Inserts a vertex into the adjacency list.
+	 * Keeps the vertices in sorted order.
 	 * @param The vertex identifier.
 	 */
 	public void insertVertex(int vertex) {
 		
 		adjList.insert( new Vertex( vertex ) );
 		vCount++;
+		
+		for( int i = 0; i < vCount; i++ ) {
+			
+			for( int j = 1; j < (vCount - i); j++ ) {
+				
+				if( adjList.lookUp(j - 1).vertex > adjList.lookUp(j).vertex )
+					adjList.swap(j - 1, j);
+			}
+		}
 	}
 	
 	/**
 	 * Inserts an adjacent vertex into the adjacency list.
+	 * Keeps the edges in sorted order by city 1 and then city 2.
 	 * @param The adjVertex identifier.
 	 * @param The edge identifier.
 	 */
-	public void insertEdge(int adjVertex, double edge) {
+	public void insertEdge(int vertex, int city1, int city2, double edgeCost, double edgeAsphalt ) {
 		
 		Vertex current;
 		for( int i = 0; i < vCount; i++ ) {
 			
 			current = adjList.lookUp(i);
-			if ( current.vertex == adjVertex ) {
+			if ( current.vertex == vertex ) {
 				
-				current.edges.insert( new Edge(adjVertex, edge) );
+				current.edges.insert( new Edge(vertex, city1, city2, edgeCost, edgeAsphalt) );
 				current.eCount++;
+				
+				for( int j = 0; j < current.eCount; j++ ) {
+					
+					for( int k = 1; k < (current.eCount - j); k++ ) {
+						
+						if ( current.edges.lookUp( k - 1).city1 > current.edges.lookUp( k ).city1 ) {
+							
+							current.edges.swap(k - 1, k);
+						}
+						else if ( current.edges.lookUp( k - 1).city1 == current.edges.lookUp(k).city1 ) {
+							
+							if ( current.edges.lookUp( k - 1).city2 > current.edges.lookUp(k).city2 )
+								current.edges.swap(k-1, k);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -123,7 +156,7 @@ public class AdjacencyList {
 	 * @param The vertex that matches the edge-to-remove's adjVertex.
 	 * @param The edge to remove.
 	 */
-	public void removeEdge(int vertex, double edge) {
+	public void removeEdge(int vertex, double edgeCost, double edgeAsphalt ) {
 		
 		Vertex current;
 		for( int i = 0; i < vCount; i++ ) {
@@ -131,7 +164,9 @@ public class AdjacencyList {
 			current = adjList.lookUp(i);
 			for( int j = 0; j < current.eCount; j++ ) {
 				
-				if( current.edges.lookUp(j).adjVertex == vertex && current.edges.lookUp(j).edge == edge ) {
+				if( current.edges.lookUp(j).vertex == vertex 
+						&& current.edges.lookUp(j).edgeCost == edgeCost
+						&& current.edges.lookUp(j).edgeAsphalt == edgeAsphalt ) {
 					
 					current.edges.remove(j);
 					current.eCount--;
@@ -161,5 +196,18 @@ public class AdjacencyList {
 	public Vertex lookupVertex(int idx) {
 		
 		return this.adjList.lookUp(idx);
+	}
+	
+	public int findVertex(int vertex) {
+		
+		for( int i = 0; i < this.adjList.size(); i++ ) {
+			
+			if ( this.adjList.lookUp(i).vertex == vertex ) {
+				
+				return i;
+			}
+		}
+		
+		return -1;
 	}
 }

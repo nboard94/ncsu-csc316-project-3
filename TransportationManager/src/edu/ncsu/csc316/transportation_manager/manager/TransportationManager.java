@@ -1,15 +1,61 @@
 package edu.ncsu.csc316.transportation_manager.manager;
 
+import java.io.FileNotFoundException;
+
+import edu.ncsu.csc316.transportation_manager.highway.Highway;
+import edu.ncsu.csc316.transportation_manager.io.HighwayReader;
+import edu.ncsu.csc316.transportation_manager.list.AdjacencyList;
+import edu.ncsu.csc316.transportation_manager.list.AdjacencyList.Edge;
+import edu.ncsu.csc316.transportation_manager.list.AdjacencyList.Vertex;
+import edu.ncsu.csc316.transportation_manager.list.ArrayBasedList;
+
 public class TransportationManager {
 
+	HighwayReader hr;
+	ArrayBasedList<Highway> highways = new ArrayBasedList<Highway>();
+	AdjacencyList adjList = new AdjacencyList();
+	
 	/**
 	 * Constructs a new TransportationManager
 	 * 
 	 * @param pathToFile the path to the file that contains the set of highways in the graph
+	 * @throws FileNotFoundException 
 	 */
-	public TransportationManager(String pathToFile)
+	public TransportationManager(String pathToFile) throws FileNotFoundException
 	{
-	    // Your code
+		
+		hr = new HighwayReader(pathToFile);
+		highways = hr.getHighways();
+		
+		Highway current;
+		 int city1;
+		int city2;
+		double cost;
+		double asphalt;
+		for( int i = 0; i < highways.size(); i++ ) {
+			
+			current = highways.lookUp(i);
+			city1 = current.getCity1();
+			city2 = current.getCity2();
+			cost = current.getCost();
+			asphalt = current.getAsphalt();
+			
+			if( adjList.findVertex(city1) == -1 ) {
+				
+				adjList.insertVertex(city1);
+			}
+			
+			if( adjList.findVertex(city2) == -1 ) {
+				
+				adjList.insertVertex(city2);
+			}
+			
+			adjList.insertEdge(city1, city1, city2, cost, asphalt);
+			adjList.insertEdge(city2, city1, city2, cost, asphalt);
+			
+			
+		}
+		
 	}
 	
 	/**
@@ -28,8 +74,28 @@ public class TransportationManager {
 	 */
 	public String getAdjacencyList()
 	{
-		return null;
-	    // Your code
+		StringBuilder sb = new StringBuilder();
+		Vertex currentV;
+		Edge currentE;
+		
+		sb.append("AdjacencyList[");
+		
+		for( int i = 0; i < adjList.getVertexCount(); i++ ) {
+			
+			currentV = adjList.lookupVertex(i);
+			sb.append("\n\tCity " + currentV.vertex + ":");
+			
+			for( int j = 0; j < currentV.eCount; j++ ) {
+				
+				currentE = currentV.edges.lookUp(j);
+				sb.append(" -> Highway[city1=" + currentE.city1 + ", city2=" + currentE.city2 + ", cost=" + currentE.edgeCost + ", asphalt=" + currentE.edgeAsphalt + "]");
+			}
+		}
+		
+		sb.append("\n]");
+		
+		
+		return sb.toString();
 	}
 	
 	/**
