@@ -26,7 +26,7 @@ public class ArrayBasedList<E> {
 	
 	/**
 	 * Gets an object from the ArrayBasedList.
-	 * @param The index to retrieve the desired object from.
+	 * @param idx The index to retrieve the desired object from.
 	 * @return The object at specified index.
 	 */
 	public E lookUp(int idx) {
@@ -36,7 +36,7 @@ public class ArrayBasedList<E> {
 	
 	/**
 	 * Removes an object from the ArrayBasedList.
-	 * @param The index of the object you want to remove.
+	 * @param idx The index of the object you want to remove.
 	 * @return The removed object.
 	 */
 	public E remove(int idx) {
@@ -55,7 +55,7 @@ public class ArrayBasedList<E> {
 	/**
 	 * Adds a new object to the end of the ArrayBasedList
 	 * , resizing the ArrayBasedList if necessary.
-	 * @param The item o to add to the ArrayBasedList.
+	 * @param o The item o to add to the ArrayBasedList.
 	 */
 	public void insert( Object o ) {
 
@@ -69,8 +69,8 @@ public class ArrayBasedList<E> {
 	/**
 	 * Adds a new object at the specified index in the
 	 * ArrayBasedList, resizing if necessary.
-	 * @param The object o to add to the ArrayBasedList.
-	 * @param The index to insert the new object at.
+	 * @param o The object o to add to the ArrayBasedList.
+	 * @param idx The idx to insert the new object at.
 	 */
 	public void insertAt( Object o, int idx ) {
 		
@@ -109,7 +109,7 @@ public class ArrayBasedList<E> {
 	 */
 	public boolean isEmpty() {
 		
-		if( this.size == 0 )
+		if( this.size < 1 )
 			return true;
 		else
 			return false;

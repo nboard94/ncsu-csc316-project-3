@@ -55,8 +55,11 @@ public class AdjacencyList {
 		
 		/**
 		 * Constructs an edge object.
-		 * @param The adjVertex identifier.
-		 * @param The edge identifier.
+		 * @param vertex The adjVertex identifier.
+		 * @param endpointOne First endpoint of edge to add.
+		 * @param endpointTwo Second endpoint of edge to add.
+		 * @param costOne First cost of edge to add.
+		 * @param costTwo Second cost of edge to add.
 		 */
 		public Edge( int vertex, int endpoint1, int endpoint2, double costOne, double costTwo ) {
 			
@@ -85,7 +88,7 @@ public class AdjacencyList {
 	/**
 	 * Inserts a vertex into the adjacency list.
 	 * Keeps the vertices in sorted order.
-	 * @param The vertex identifier.
+	 * @param vertex The vertex identifier.
 	 */
 	public void insertVertex(int vertex) {
 		
@@ -105,8 +108,11 @@ public class AdjacencyList {
 	/**
 	 * Inserts an adjacent vertex into the adjacency list.
 	 * Keeps the edges in sorted order by city 1 and then city 2.
-	 * @param The adjVertex identifier.
-	 * @param The edge identifier.
+	 * @param vertex The adjVertex identifier.
+	 * @param endpointOne First endpoint of edge to remove.
+	 * @param endpointTwo Second endpoint of edge to remove.
+	 * @param costOne First cost of edge to remove.
+	 * @param costTwo Second cost of edge to remove.
 	 */
 	public void insertEdge(int vertex, int endpoint1, int endpoint2, double costOne, double costTwo ) {
 		
@@ -127,10 +133,10 @@ public class AdjacencyList {
 							
 							current.edges.swap(k - 1, k);
 						}
-						else if ( current.edges.lookUp( k - 1).endpoint1 == current.edges.lookUp(k).endpoint1 ) {
+						else if ( current.edges.lookUp( k - 1).endpoint1 == current.edges.lookUp(k).endpoint1
+								&& current.edges.lookUp( k - 1).endpoint2 > current.edges.lookUp(k).endpoint2 ) {
 							
-							if ( current.edges.lookUp( k - 1).endpoint2 > current.edges.lookUp(k).endpoint2 )
-								current.edges.swap(k-1, k);
+							current.edges.swap(k - 1, k);
 						}
 					}
 				}
@@ -140,7 +146,7 @@ public class AdjacencyList {
 	
 	/**
 	 * Removes a vertex from the adjacency list.
-	 * @param The vertex to remove.
+	 * @param vertex The vertex to remove.
 	 */
 	public void removeVertex(int vertex) {
 		
@@ -156,8 +162,9 @@ public class AdjacencyList {
 	
 	/**
 	 * Removes an edge from the adjacency list.
-	 * @param The vertex that matches the edge-to-remove's adjVertex.
-	 * @param The edge to remove.
+	 * @param vertex The vertex that matches the edge-to-remove's adjVertex.
+	 * @param endpointOne First endpoint of edge to remove.
+	 * @param endpointTwo Second endpoint of edge to remove.
 	 */
 	public void removeEdge(int vertex, double endpointOne, double endpointTwo ) {
 		
@@ -199,7 +206,7 @@ public class AdjacencyList {
 	/**
 	 * Given the parameter, finds and returns the
 	 * position of the given vertex.
-	 * @param The vertex to find.
+	 * @param vertex The vertex to find.
 	 * @return The position of the vertex to find, otherwise -1.
 	 */
 	public int findVertexPosition(int vertex) {
@@ -217,7 +224,7 @@ public class AdjacencyList {
 	
 	/**
 	 * Given the parameter, finds and returns the vertex.
-	 * @param The vertex to find.
+	 * @param vertex The vertex to find.
 	 * @return The vertex, or null.
 	 */
 	public Vertex findVertex(int vertex) {

@@ -1,6 +1,5 @@
 package edu.ncsu.csc316.transportation_manager.io;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -34,7 +33,8 @@ public class HighwayReader {
 	/**
 	 * Constructs a highway reader, and reads from the
 	 * input file, filling in the list of highways.
-	 * @param The filepath to read from.
+	 * @param filepath The filepath to read from.
+	 * @throws FileNotFoundException if file not found.
 	 */
 	public HighwayReader(String filepath) throws FileNotFoundException {
 		

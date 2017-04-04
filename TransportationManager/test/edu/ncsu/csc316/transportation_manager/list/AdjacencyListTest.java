@@ -5,8 +5,15 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
+/**
+ * Test class for the adjacency list.
+ * @author Nicholas Board (ndboard)
+ */
 public class AdjacencyListTest {
 
+	/**
+	 * Tests the construction and functionality of the adjacency list.
+	 */
 	@Test
 	public void adjacencyListTest() {
 		

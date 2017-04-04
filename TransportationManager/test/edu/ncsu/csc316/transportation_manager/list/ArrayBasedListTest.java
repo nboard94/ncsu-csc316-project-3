@@ -10,6 +10,9 @@ import org.junit.Test;
  */
 public class ArrayBasedListTest {
 
+	/**
+	 * Tests the construction and functionalit of the arraybasedlist.
+	 */
 	@Test
 	public void arrayBasedListTest() {
 		

@@ -8,5 +8,9 @@ package edu.ncsu.csc316.transportation_manager.util;
  * @author Nicholas Board (ndboard)
  */
 public enum Type {
-	COST, ASPHALT
+	
+	/** COST value of the Type enum. */
+	COST, 
+	/** ASPHALT value of the Type enum. */
+	ASPHALT
 }
