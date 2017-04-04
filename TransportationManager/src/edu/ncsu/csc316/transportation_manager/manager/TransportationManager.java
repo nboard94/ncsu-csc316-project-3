@@ -40,12 +40,12 @@ public class TransportationManager {
 			cost = current.getCost();
 			asphalt = current.getAsphalt();
 			
-			if( adjList.findVertex(city1) == -1 ) {
+			if( adjList.findVertexPosition(city1) == -1 ) {
 				
 				adjList.insertVertex(city1);
 			}
 			
-			if( adjList.findVertex(city2) == -1 ) {
+			if( adjList.findVertexPosition(city2) == -1 ) {
 				
 				adjList.insertVertex(city2);
 			}
@@ -82,13 +82,13 @@ public class TransportationManager {
 		
 		for( int i = 0; i < adjList.getVertexCount(); i++ ) {
 			
-			currentV = adjList.lookupVertex(i);
+			currentV = adjList.getVertexList().lookUp(i);
 			sb.append("\n\tCity " + currentV.vertex + ":");
 			
 			for( int j = 0; j < currentV.eCount; j++ ) {
 				
 				currentE = currentV.edges.lookUp(j);
-				sb.append(" -> Highway[city1=" + currentE.city1 + ", city2=" + currentE.city2 + ", cost=" + currentE.edgeCost + ", asphalt=" + currentE.edgeAsphalt + "]");
+				sb.append(" -> Highway[city1=" + currentE.endpoint1 + ", city2=" + currentE.endpoint2 + ", cost=" + currentE.costOne + ", asphalt=" + currentE.costTwo + "]");
 			}
 		}
 		

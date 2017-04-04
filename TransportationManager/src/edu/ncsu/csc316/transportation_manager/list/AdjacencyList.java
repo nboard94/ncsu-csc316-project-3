@@ -44,24 +44,27 @@ public class AdjacencyList {
 		
 		/** The adjVertex identifier. */
 		public int vertex;
-		public int city1;
-		public int city2;
-		/** The edge identifier. */
-		public double edgeCost;
-		public double edgeAsphalt;
+		/** The first endpoint in the edge. */
+		public int endpoint1;
+		/** The second endpoint in the edge. */
+		public int endpoint2;
+		/** The first edge identifier. */
+		public double costOne;
+		/** The second edge identifier. */
+		public double costTwo;
 		
 		/**
 		 * Constructs an edge object.
 		 * @param The adjVertex identifier.
-		 * @param The edge identifer.
+		 * @param The edge identifier.
 		 */
-		public Edge( int vertex, int city1, int city2, double edgeCost, double edgeAsphalt ) {
+		public Edge( int vertex, int endpoint1, int endpoint2, double costOne, double costTwo ) {
 			
 			this.vertex = vertex;
-			this.city1 = city1;
-			this.city2 = city2;
-			this.edgeCost = edgeCost;
-			this.edgeAsphalt = edgeAsphalt;
+			this.endpoint1 = endpoint1;
+			this.endpoint2 = endpoint2;
+			this.costOne = costOne;
+			this.costTwo = costTwo;
 		}
 	}
 	
@@ -105,7 +108,7 @@ public class AdjacencyList {
 	 * @param The adjVertex identifier.
 	 * @param The edge identifier.
 	 */
-	public void insertEdge(int vertex, int city1, int city2, double edgeCost, double edgeAsphalt ) {
+	public void insertEdge(int vertex, int endpoint1, int endpoint2, double costOne, double costTwo ) {
 		
 		Vertex current;
 		for( int i = 0; i < vCount; i++ ) {
@@ -113,20 +116,20 @@ public class AdjacencyList {
 			current = adjList.lookUp(i);
 			if ( current.vertex == vertex ) {
 				
-				current.edges.insert( new Edge(vertex, city1, city2, edgeCost, edgeAsphalt) );
+				current.edges.insert( new Edge(vertex, endpoint1, endpoint2, costOne, costTwo) );
 				current.eCount++;
 				
 				for( int j = 0; j < current.eCount; j++ ) {
 					
 					for( int k = 1; k < (current.eCount - j); k++ ) {
 						
-						if ( current.edges.lookUp( k - 1).city1 > current.edges.lookUp( k ).city1 ) {
+						if ( current.edges.lookUp( k - 1).endpoint1 > current.edges.lookUp( k ).endpoint1 ) {
 							
 							current.edges.swap(k - 1, k);
 						}
-						else if ( current.edges.lookUp( k - 1).city1 == current.edges.lookUp(k).city1 ) {
+						else if ( current.edges.lookUp( k - 1).endpoint1 == current.edges.lookUp(k).endpoint1 ) {
 							
-							if ( current.edges.lookUp( k - 1).city2 > current.edges.lookUp(k).city2 )
+							if ( current.edges.lookUp( k - 1).endpoint2 > current.edges.lookUp(k).endpoint2 )
 								current.edges.swap(k-1, k);
 						}
 					}
@@ -156,7 +159,7 @@ public class AdjacencyList {
 	 * @param The vertex that matches the edge-to-remove's adjVertex.
 	 * @param The edge to remove.
 	 */
-	public void removeEdge(int vertex, double edgeCost, double edgeAsphalt ) {
+	public void removeEdge(int vertex, double endpointOne, double endpointTwo ) {
 		
 		Vertex current;
 		for( int i = 0; i < vCount; i++ ) {
@@ -165,8 +168,8 @@ public class AdjacencyList {
 			for( int j = 0; j < current.eCount; j++ ) {
 				
 				if( current.edges.lookUp(j).vertex == vertex 
-						&& current.edges.lookUp(j).edgeCost == edgeCost
-						&& current.edges.lookUp(j).edgeAsphalt == edgeAsphalt ) {
+						&& current.edges.lookUp(j).endpoint1 == endpointOne
+						&& current.edges.lookUp(j).endpoint2 == endpointTwo ) {
 					
 					current.edges.remove(j);
 					current.eCount--;
@@ -193,12 +196,13 @@ public class AdjacencyList {
 		return this.vCount;
 	}
 	
-	public Vertex lookupVertex(int idx) {
-		
-		return this.adjList.lookUp(idx);
-	}
-	
-	public int findVertex(int vertex) {
+	/**
+	 * Given the parameter, finds and returns the
+	 * position of the given vertex.
+	 * @param The vertex to find.
+	 * @return The position of the vertex to find, otherwise -1.
+	 */
+	public int findVertexPosition(int vertex) {
 		
 		for( int i = 0; i < this.adjList.size(); i++ ) {
 			
@@ -209,5 +213,23 @@ public class AdjacencyList {
 		}
 		
 		return -1;
+	}
+	
+	/**
+	 * Given the parameter, finds and returns the vertex.
+	 * @param The vertex to find.
+	 * @return The vertex, or null.
+	 */
+	public Vertex findVertex(int vertex) {
+		
+		for( int i = 0; i < this.adjList.size(); i++ ) {
+			
+			if ( this.adjList.lookUp(i).vertex == vertex ) {
+				
+				return this.adjList.lookUp(i);
+			}
+		}
+		
+		return null;
 	}
 }
