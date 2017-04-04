@@ -21,10 +21,14 @@ public class TransportationManager {
 	 * @param pathToFile the path to the file that contains the set of highways in the graph
 	 * @throws FileNotFoundException 
 	 */
-	public TransportationManager(String pathToFile) throws FileNotFoundException
+	public TransportationManager(String pathToFile)
 	{
 		
-		hr = new HighwayReader(pathToFile);
+		try {
+			hr = new HighwayReader(pathToFile);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		highways = hr.getHighways();
 		
 		Highway current;
