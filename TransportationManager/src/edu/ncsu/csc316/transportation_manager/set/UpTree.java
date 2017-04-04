@@ -62,7 +62,7 @@ public class UpTree {
 	 * @param p The node to find the root of.
 	 * @return The root of the given node.
 	 */
-	public Node find(Node p) {
+	public Node findRoot(Node p) {
 		
 		while(p.parent != null) {
 			
