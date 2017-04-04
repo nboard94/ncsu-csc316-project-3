@@ -13,7 +13,7 @@ public class UpTree {
 	 * Inner Node class of the disjoint set.
 	 * @author Nicholas Board (ndboard)
 	 */
-	private class Node {
+	public class Node {
 		
 		/** The key of the node. */
 		private int key;
@@ -96,5 +96,10 @@ public class UpTree {
 			
 			return T;
 		}
+	}
+	
+	public ArrayBasedList<Node> getRoots() {
+		
+		return this.rootNodes;
 	}
 }

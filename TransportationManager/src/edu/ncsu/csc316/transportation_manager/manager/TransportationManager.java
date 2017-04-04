@@ -29,6 +29,7 @@ public class TransportationManager {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		
 		highways = hr.getHighways();
 		
 		Highway current;

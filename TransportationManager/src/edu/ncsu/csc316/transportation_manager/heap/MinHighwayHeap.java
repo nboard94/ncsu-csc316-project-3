@@ -11,15 +11,22 @@ import edu.ncsu.csc316.transportation_manager.util.Type;
  * @author Nicholas Board (ndboard)
  */
 public class MinHighwayHeap {
+	
+	private class Node {
+		
+		Highway highway;
+		
+		int position;
+		
+		Node() {
+			
+		}
+	}
 
-	/** The type of this min heap (COST or ASPHALT). */
-	private Type type;
-	/** The array that contains the heap elements.
-	 *  Index zero has a placeholder highway, the
-	 *  actual elements start at index 1. */
-	private ArrayBasedList<Highway> minHeap = new ArrayBasedList<Highway>();
-	/** Elements in the list. */
-	private int size;
+	ArrayBasedList<Highway> heap = new ArrayBasedList<Highway>();
+	int pos;
+	int size;
+	Type type;
 	
 	/**
 	* Constructs a new Highway heap
@@ -29,13 +36,16 @@ public class MinHighwayHeap {
 	*/
 	public MinHighwayHeap(String type) {
 	    
-		if( type.toUpperCase().equals("COST") ) 
+		if( type.equals("COST")) {
+			
 			this.type = Type.COST;
-		else if( type.toUpperCase().equals("ASPHALT") )
+		}
+		else if( type.equals("ASPHALT")) {
+			
 			this.type = Type.ASPHALT;
+		}
 		
-		//Placeholder highway at index 0.
-		minHeap.insertAt( new Highway(0,0,0,0), 0);
+		this.size = 0;
 	}
 	
 	/**
@@ -43,11 +53,7 @@ public class MinHighwayHeap {
 	 * @param hwy the Highway to insert into the minheap
 	 */
 	public void insert(Highway hwy) {
-
-		if( minHeap.lookUp(1) == null ) {
-			
-			minHeap.insertAt(hwy, 1);
-		}
+		
 	}
 	
 	/**
@@ -55,8 +61,7 @@ public class MinHighwayHeap {
 	 * @return the Highway with minimum weight in the minheap
 	 */
 	public Highway deleteMin() {
-		return null;
-	    // Your code
+	    return null;
 	}
 	
 	/**
@@ -74,7 +79,7 @@ public class MinHighwayHeap {
 	@Override
 	public String toString()
 	{
-		return null;
-	    // Your code
-	}   
+	    return null;
+	} 
+
 }
