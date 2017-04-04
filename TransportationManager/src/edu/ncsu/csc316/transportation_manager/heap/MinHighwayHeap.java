@@ -43,7 +43,7 @@ public class MinHighwayHeap {
 	 */
 	public void insert(Highway hwy) {
 
-		heap.insertAt(hwy, heap.size());
+		heap.insertAt(hwy, this.size);
 		this.size++;
 		this.upHeap(this.size - 1);
 
@@ -90,53 +90,75 @@ public class MinHighwayHeap {
 
 	public void downHeap(int m) {
 
-		// i is m’s smallest child, if one exists
 		int i = 0;
-		if ((2 * m + 2) < this.heap.size()) { // both children exist
-			if (this.heap.lookUp(2 * m + 2).getCost() <= this.heap.lookUp(2 * m + 1).getCost()) {
-				i = 2 * m + 2;
-			} else {
-				i = 2 * m + 1;
+		
+		if(this.type == Type.COST) {
+			
+			if(2 * m + 2 < this.size) {
+				
+				if(this.heap.lookUp(2 * m + 2).getCost() <= this.heap.lookUp(2 * m + 1).getCost())
+					i = 2 * m + 2;
+				else
+					i = 2 * m + 1;
 			}
-		} else if (2 * m + 1 < this.heap.size()) { // only left child exists
-			i = 2 * m + 1;
+			else if((2 * m + 1) < this.size)
+				i = 2 * m + 1;
+			
+			if(i > 0 && this.heap.lookUp(m).getCost() > this.heap.lookUp(i).getCost()) {
+				
+				this.heap.swap(m, i);
+				this.downHeap(i);
+			}
 		}
-		// at this stage, if i = 0, then the node has no children
-		if (i > 0 && this.heap.lookUp(m).getCost() > this.heap.lookUp(i).getCost()) {
-			this.heap.swap(m, i);
-			downHeap(i);
+		else if(this.type == Type.ASPHALT) {
+			
+			if(2 * m + 2 < this.size) {
+				
+				if(this.heap.lookUp(2 * m + 2).getAsphalt() <= this.heap.lookUp(2 * m + 1).getAsphalt())
+					i = 2 * m + 2;
+				else
+					i = 2 * m + 1;
+			}
+			else if ((2 * m + 1) < this.size)
+				i = 2 * m + 1;
+			
+			if(i > 0 && this.heap.lookUp(m).getAsphalt() > this.heap.lookUp(i).getAsphalt()) {
+				
+				this.heap.swap(m, i);
+				this.downHeap(i);
+			}
 		}
 	}
 
 	/**
-	 * Returns a string representation of the level-order traversal 
-	 * of the heap in the following format:
+	 * Returns a string representation of the level-order traversal of the heap
+	 * in the following format:
 	 * 
-	 * Heap[
-	 *    Highway[city1=X, city2=X, cost=X.X, asphalt=X.X],
-	 *    Highway[city1=X, city2=X, cost=X.X, asphalt=X.X],
-	 *    Highway[city1=X, city2=X, cost=X.X, asphalt=X.X]
-	 * ]
+	 * Heap[ Highway[city1=X, city2=X, cost=X.X, asphalt=X.X], Highway[city1=X,
+	 * city2=X, cost=X.X, asphalt=X.X], Highway[city1=X, city2=X, cost=X.X,
+	 * asphalt=X.X] ]
 	 *
 	 * @return the string representation of the minheap
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Heap[");
 		Highway current;
-		
-		for( int i = 0; i < this.heap.size(); i++ ) {
-			
-			if( this.heap.lookUp(i) != null ) {
-				
-				current = this.heap.lookUp(i);
-				
-				sb.append("\n\tHighway[city1=" + current.getCity1() + ", city2=" + current.getCity2() + ", cost=" + current.getCost() + ", asphalt=" + current.getAsphalt() + "],");
+
+		for (int i = 0; i < this.heap.size(); i++) {
+
+			current = this.heap.lookUp(i);
+
+			if (i == this.heap.size() - 1) {
+				sb.append("\n\tHighway[city1=" + current.getCity1() + ", city2=" + current.getCity2() + ", cost="
+						+ current.getCost() + ", asphalt=" + current.getAsphalt() + "]");
+			} else {
+				sb.append("\n\tHighway[city1=" + current.getCity1() + ", city2=" + current.getCity2() + ", cost="
+						+ current.getCost() + ", asphalt=" + current.getAsphalt() + "],");
 			}
 		}
-		
+
 		sb.append("\n]");
 		return sb.toString();
 	}
