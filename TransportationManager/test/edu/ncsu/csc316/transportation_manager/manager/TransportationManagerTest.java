@@ -8,6 +8,9 @@ import org.junit.Test;
  */
 public class TransportationManagerTest {
 
+	/**
+	 * Tests the functionality of the TransportationManager.
+	 */
 	@Test
 	public void transportationManagerTest() {
 		

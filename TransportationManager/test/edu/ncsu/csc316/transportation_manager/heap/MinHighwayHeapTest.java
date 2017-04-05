@@ -143,5 +143,7 @@ public class MinHighwayHeapTest {
 		newHeap.deleteMin();
 		newHeap.deleteMin();
 		newHeap.deleteMin();
+		
+		assertEquals(0, newHeap.size);
 	}
 }
