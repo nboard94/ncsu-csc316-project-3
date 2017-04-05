@@ -77,9 +77,9 @@ public class ArrayBasedList<E> {
 		if ( items.length == size )
 			items = resize(items);
 		
-		while( items.length <= idx ) {
-			items = resize(items);
-		}
+//		while( items.length <= idx ) {
+//			items = resize(items);
+//		}
 		
 		for( int i = idx; i < size; i++ ) {
 			

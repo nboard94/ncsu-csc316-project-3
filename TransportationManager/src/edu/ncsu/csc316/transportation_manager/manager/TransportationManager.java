@@ -34,7 +34,7 @@ public class TransportationManager {
 		try {
 			hr = new HighwayReader(pathToFile);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			//This block is intentionally left empty.
 		}
 
 		highways = hr.getHighways();
