@@ -6,10 +6,21 @@ import edu.ncsu.csc316.transportation_manager.list.AdjacencyList;
 import edu.ncsu.csc316.transportation_manager.list.ArrayBasedList;
 import edu.ncsu.csc316.transportation_manager.set.UpTree;
 
+/**
+ * This class implements Kruskal's algorithm.
+ * @author Nick Board
+ */
 public class MinimumHighwayFinder {
 	
-	AdjacencyList MST = new AdjacencyList();
+	/** Contains the MST. */
+	AdjacencyList minimumSpanningTree = new AdjacencyList();
 	
+	/**
+	 * The MinimumHighwayFinder utilizes Kruskal's Algorithm.
+	 * @param highways The highways that connect the cities.
+	 * @param initList The adjacencylist of all the highways.
+	 * @param type The type of edge to consider.
+	 */
 	public MinimumHighwayFinder(ArrayBasedList<Highway> highways, AdjacencyList initList, String type) {
 		
 		// insert the edges into the heap, partially ordered according to edge weight
@@ -39,9 +50,13 @@ public class MinimumHighwayFinder {
 		}
 	}
 	
+	/**
+	 * Gets the minimum spanning tree.
+	 * @return The minimum spanning tree.
+	 */
 	public AdjacencyList getMST() {
 		
-		return MST;
+		return minimumSpanningTree;
 	}
 
 }

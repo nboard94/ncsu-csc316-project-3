@@ -25,7 +25,7 @@ public class AdjacencyList {
 		
 		/**
 		 * Constructs a vertex object.
-		 * @param The vertex identifier.
+		 * @param vertex The vertex identifier.
 		 */
 		Vertex( int vertex ) {
 			
@@ -56,8 +56,8 @@ public class AdjacencyList {
 		/**
 		 * Constructs an edge object.
 		 * @param vertex The adjVertex identifier.
-		 * @param endpointOne First endpoint of edge to add.
-		 * @param endpointTwo Second endpoint of edge to add.
+		 * @param endpoint1 First endpoint of edge to add.
+		 * @param endpoint2 Second endpoint of edge to add.
 		 * @param costOne First cost of edge to add.
 		 * @param costTwo Second cost of edge to add.
 		 */
@@ -109,8 +109,8 @@ public class AdjacencyList {
 	 * Inserts an adjacent vertex into the adjacency list.
 	 * Keeps the edges in sorted order by city 1 and then city 2.
 	 * @param vertex The adjVertex identifier.
-	 * @param endpointOne First endpoint of edge to remove.
-	 * @param endpointTwo Second endpoint of edge to remove.
+	 * @param endpoint1 First endpoint of edge to remove.
+	 * @param endpoint2 Second endpoint of edge to remove.
 	 * @param costOne First cost of edge to remove.
 	 * @param costTwo Second cost of edge to remove.
 	 */

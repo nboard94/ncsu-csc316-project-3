@@ -10,6 +10,10 @@ import edu.ncsu.csc316.transportation_manager.list.AdjacencyList.Vertex;
 import edu.ncsu.csc316.transportation_manager.list.ArrayBasedList;
 import edu.ncsu.csc316.transportation_manager.util.MinimumHighwayFinder;
 
+/**
+ * The manager class that drives most of the program.
+ * @author Nick Board
+ */
 public class TransportationManager {
 
 	HighwayReader hr;
@@ -120,8 +124,8 @@ public class TransportationManager {
 	 */
 	public String getMinimumHighways(String type)
 	{
-		MinimumHighwayFinder MHF = new MinimumHighwayFinder(highways, adjList, type);
-		AdjacencyList MST = MHF.getMST();
+		MinimumHighwayFinder minimumHighwayFinder = new MinimumHighwayFinder(highways, adjList, type);
+		AdjacencyList minimumSpanningTree = minimumHighwayFinder.getMST();
 		
 		StringBuilder sb = new StringBuilder();
 		Vertex currentV;
@@ -129,9 +133,9 @@ public class TransportationManager {
 		
 		sb.append("AdjacencyList[");
 		
-		for( int i = 0; i < MST.getVertexCount(); i++ ) {
+		for( int i = 0; i < minimumSpanningTree.getVertexCount(); i++ ) {
 			
-			currentV = MST.getVertexList().lookUp(i);
+			currentV = minimumSpanningTree.getVertexList().lookUp(i);
 			sb.append("\n\tCity " + currentV.vertex + ":");
 			
 			for( int j = 0; j < currentV.eCount; j++ ) {
