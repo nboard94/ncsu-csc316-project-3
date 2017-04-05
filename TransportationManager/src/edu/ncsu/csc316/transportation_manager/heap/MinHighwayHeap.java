@@ -51,27 +51,26 @@ public class MinHighwayHeap {
 
 	/**
 	 * Heapify the up down.
-	 * @param i The i to upheap on.
+	 * 
+	 * @param i
+	 *            The i to upheap on.
 	 */
 	public void upHeap(int i) {
 
-		if (this.type == Type.COST) {
+		if (this.type == Type.COST && i > 0
+				&& this.heap.lookUp((i - 1) / 2).getCost() > this.heap.lookUp(i).getCost()) {
 
-			if (i > 0 && this.heap.lookUp((i - 1) / 2).getCost() > this.heap.lookUp(i).getCost()) {
-
-				this.heap.swap((i - 1) / 2, i);
-				upHeap((i - 1) / 2);
-			}
-
-		} else if (this.type == Type.ASPHALT) {
-
-			if (i > 0 && this.heap.lookUp((i - 1) / 2).getAsphalt() > this.heap.lookUp(i).getAsphalt()) {
-
-				this.heap.swap((i - 1) / 2, i);
-				upHeap((i - 1) / 2);
-			}
-
+			this.heap.swap((i - 1) / 2, i);
+			upHeap((i - 1) / 2);
 		}
+
+		else if (this.type == Type.ASPHALT && i > 0
+				&& this.heap.lookUp((i - 1) / 2).getAsphalt() > this.heap.lookUp(i).getAsphalt()) {
+
+			this.heap.swap((i - 1) / 2, i);
+			upHeap((i - 1) / 2);
+		}
+
 	}
 
 	/**
@@ -90,7 +89,9 @@ public class MinHighwayHeap {
 
 	/**
 	 * Heapify the heap down.
-	 * @param m The m to downheap on.
+	 * 
+	 * @param m
+	 *            The m to downheap on.
 	 */
 	public void downHeap(int m) {
 

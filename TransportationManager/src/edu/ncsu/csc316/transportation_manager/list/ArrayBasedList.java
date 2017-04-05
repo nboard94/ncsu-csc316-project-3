@@ -113,12 +113,7 @@ public class ArrayBasedList<E> {
 	 */
 	public boolean isEmpty() {
 		
-		if( this.size == 0 )
-			return true;
-		else if ( this.size > 0 )
-			return false;
-		else
-			return true;
+		return (this.size <= 0);
 	}
 	
 	/**
