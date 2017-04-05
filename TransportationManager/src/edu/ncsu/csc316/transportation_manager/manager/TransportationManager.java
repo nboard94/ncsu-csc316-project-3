@@ -129,25 +129,20 @@ public class TransportationManager {
 		ArrayBasedList<Highway> minHigh = minimumHighwayFinder.getMST();
 		StringBuilder sb = new StringBuilder();
 
-
 		sb.append("List[");
 
-//		List[
-//		     Highway[city1=1, city2=0, cost=5.0, asphalt=99.0],
-//		     Highway[city1=1, city2=2, cost=6.0, asphalt=72.0],
-//		     Highway[city1=3, city2=1, cost=10.0, asphalt=112.0]
-//		  ]
-		
 		Highway c;
-		for(int i = 0; i < minHigh.size(); i++) {
-			
+		for (int i = 0; i < minHigh.size(); i++) {
+
 			c = minHigh.lookUp(i);
-			
-			if( i == minHigh.size() - 1)
-				sb.append("\n\tHighway[city1=" + c.getCity1() + ", city2=" + c.getCity2() + ", cost=" + c.getCost() + ", asphalt=" + c.getAsphalt() + "]");
+
+			if (i == minHigh.size() - 1)
+				sb.append("\n\tHighway[city1=" + c.getCity1() + ", city2=" + c.getCity2() + ", cost=" + c.getCost()
+						+ ", asphalt=" + c.getAsphalt() + "]");
 			else
-				sb.append("\n\tHighway[city1=" + c.getCity1() + ", city2=" + c.getCity2() + ", cost=" + c.getCost() + ", asphalt=" + c.getAsphalt() + "],");
-		
+				sb.append("\n\tHighway[city1=" + c.getCity1() + ", city2=" + c.getCity2() + ", cost=" + c.getCost()
+						+ ", asphalt=" + c.getAsphalt() + "],");
+
 		}
 
 		sb.append("\n]");
