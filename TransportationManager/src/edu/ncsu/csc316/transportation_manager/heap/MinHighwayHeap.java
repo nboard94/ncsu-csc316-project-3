@@ -153,10 +153,10 @@ public class MinHighwayHeap {
 			current = this.heap.lookUp(i);
 
 			if (i == this.heap.size() - 1) {
-				sb.append("\n\tHighway[city1=" + current.getCity1() + ", city2=" + current.getCity2() + ", cost="
+				sb.append("\n   Highway[city1=" + current.getCity1() + ", city2=" + current.getCity2() + ", cost="
 						+ current.getCost() + ", asphalt=" + current.getAsphalt() + "]");
 			} else {
-				sb.append("\n\tHighway[city1=" + current.getCity1() + ", city2=" + current.getCity2() + ", cost="
+				sb.append("\n   Highway[city1=" + current.getCity1() + ", city2=" + current.getCity2() + ", cost="
 						+ current.getCost() + ", asphalt=" + current.getAsphalt() + "],");
 			}
 		}
