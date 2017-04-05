@@ -46,7 +46,7 @@ public class HighwayReader {
 			throw new FileNotFoundException();
 		}
 		
-		while ( scan.hasNextLine() ) {
+		while ( scan.hasNext() ) {
 			
 			city1 = scan.nextInt();
 			city2 = scan.nextInt();
