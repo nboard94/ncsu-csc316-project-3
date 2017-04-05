@@ -4,102 +4,78 @@ import edu.ncsu.csc316.transportation_manager.list.ArrayBasedList;
 
 /**
  * Represents an UpTree disjoint set.
+ * 
  * @author Nicholas Board (ndboard)
  */
 public class UpTree {
 
-	
+	/** Contains all the values of the uptree. */
+	ArrayBasedList<Integer> disjointSet = new ArrayBasedList<Integer>();
+	/** Size of the uptree. */
+	int size = 0;
+
 	/**
-	 * Inner Node class of the disjoint set.
-	 * @author Nicholas Board (ndboard)
+	 * Constructs a new UpTree. Sets all member values to -1.
+	 * 
+	 * @param s
+	 *            The number of members in the UpTree.
 	 */
-	public class Node {
-		
-		/** The key of the node. */
-		private int key;
-		/** The value of the node. */
-		private int value;
-		/** Pointer to parent node, or null. */
-		private Node parent;
-		/** If root, number of tree nodes.  Null otherwise. */
-		private int count;
-		
-		Node(int key, int value, Node parent, int count) {
-			
-			this.key = key;
-			this.value = value;
-			this.parent = parent;
-			this.count = count;
+	public UpTree(int s) {
+
+		this.size = s;
+
+		for (int i = 0; i < this.size; i++) {
+
+			disjointSet.insert(-1);
 		}
 	}
-	
-	private ArrayBasedList<Node> rootNodes = new ArrayBasedList<Node>();
-	
+
 	/**
-	 * Constructor for an UpTree.
+	 * Finds the root of a member.
+	 * 
+	 * @param p
+	 *            The member to find the root of.
+	 * @return The root of p.
 	 */
-	public UpTree() {
-		
-	}
-	
-	/**
-	 * Creates a new node, sets parent's field to
-	 * null, sets count to one.
-	 * @param key The key of the new node.
-	 * @param value The value of the new node.
-	 * @return The new root node.
-	 */
-	public Node makeSet(int key, int value) {
-		
-		Node newNode = new Node(key, value, null, 1);
-		rootNodes.insertAt(newNode, key);
-		
-		return rootNodes.lookUp(key);
-	}
-	
-	/**
-	 * Finds the root of the given node.
-	 * @param p The node to find the root of.
-	 * @return The root of the given node.
-	 */
-	public Node findRoot(Node p) {
-		
-		while(p.parent != null) {
-			
-			p = p.parent;
+	public int find(int p) {
+
+		while (p > -1) {
+
+			p = disjointSet.lookUp(p);
 		}
+
+		int i = 0;
 		
-		return p;
-	}
-	
-	/**
-	 * Unions two disjoint sets together.
-	 * @param S One node to union.
-	 * @param T Another node to union.
-	 * @return The root of the new Node.
-	 */
-	public Node union(Node S, Node T) {
-		
-		if( S.count >= T.count ) {
+		while(true) {
 			
-			S.count = S.count + T.count;
-			T.parent = S;
-			rootNodes.remove( T.key );
-			
-			return S;
-		}
-		else {
-			
-			T.count = T.count + S.count;
-			S.parent = T;
-			rootNodes.remove( S.key );
-			
-			return T;
+			if(disjointSet.lookUp(i) == p)
+				return i;
+			else
+				i++;
 		}
 	}
-	
-	public ArrayBasedList<Node> getRoots() {
-		
-		return this.rootNodes;
+
+	/**
+	 * Unions two sets together.
+	 * 
+	 * @param s
+	 *            The first set.
+	 * @param t
+	 *            The second set.
+	 * @return The root of the new set.
+	 */
+	public int union(int s, int t) {
+
+		if (this.disjointSet.lookUp(s) >= this.disjointSet.lookUp(t)) {
+
+			this.disjointSet.replace(s, disjointSet.lookUp(s) + disjointSet.lookUp(t));
+			this.disjointSet.replace(t, s);
+			return this.disjointSet.lookUp(s);
+		} else {
+
+			this.disjointSet.replace(t, disjointSet.lookUp(s) + disjointSet.lookUp(t));
+			this.disjointSet.replace(s, t);
+			return this.disjointSet.lookUp(t);
+		}
 	}
 }

@@ -4,22 +4,35 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * Tests the methods and construction of an UpTree.
+ * 
+ * @author Nick Board
+ */
 public class UpTreeTest {
 
+	/**
+	 * Tests the functionality of the upTree.
+	 */
 	@Test
 	public void upTreeTest() {
-		
-		UpTree ut = new UpTree();
-		assertEquals(0, ut.getRoots().size());
-		
-		ut.makeSet(ut.getRoots().size(), 0);
-		ut.makeSet(ut.getRoots().size(), 1);
-		ut.makeSet(ut.getRoots().size(), 2);
-		assertEquals(3, ut.getRoots().size());
-		
-		ut.union(ut.getRoots().lookUp(0), ut.getRoots().lookUp(1));
-		assertEquals(2, ut.getRoots().size());
-		
-		//ut.union(S, T)
+
+		UpTree ut = new UpTree(3);
+		assertEquals(-1, ut.disjointSet.lookUp(0).intValue());
+		assertEquals(-1, ut.disjointSet.lookUp(1).intValue());
+		assertEquals(-1, ut.disjointSet.lookUp(2).intValue());
+		assertNull(ut.disjointSet.lookUp(3));
+
+		ut.union(1, 0);
+		assertEquals(1, ut.disjointSet.lookUp(0).intValue());
+		assertEquals(-2, ut.disjointSet.lookUp(1).intValue());
+		assertEquals(-1, ut.disjointSet.lookUp(2).intValue());
+
+		ut.union(1, 2);
+		assertEquals(1, ut.disjointSet.lookUp(0).intValue());
+		assertEquals(2, ut.disjointSet.lookUp(1).intValue());
+		assertEquals(-3, ut.disjointSet.lookUp(2).intValue());
+
+		assertEquals(2, ut.find(0));
 	}
 }
