@@ -12,7 +12,7 @@ public class UpTree {
 	/** Contains all the values of the uptree. */
 	ArrayBasedList<Integer> disjointSet = new ArrayBasedList<Integer>();
 	/** Size of the uptree. */
-	int size = 0;
+	public int size = 0;
 
 	/**
 	 * Constructs a new UpTree. Sets all member values to -1.
@@ -70,11 +70,13 @@ public class UpTree {
 
 			this.disjointSet.replace(s, disjointSet.lookUp(s) + disjointSet.lookUp(t));
 			this.disjointSet.replace(t, s);
+			this.size--;
 			return this.disjointSet.lookUp(s);
 		} else {
 
 			this.disjointSet.replace(t, disjointSet.lookUp(s) + disjointSet.lookUp(t));
 			this.disjointSet.replace(s, t);
+			this.size--;
 			return this.disjointSet.lookUp(t);
 		}
 	}

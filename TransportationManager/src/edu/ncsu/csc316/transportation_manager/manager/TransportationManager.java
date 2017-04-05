@@ -8,6 +8,7 @@ import edu.ncsu.csc316.transportation_manager.list.AdjacencyList;
 import edu.ncsu.csc316.transportation_manager.list.AdjacencyList.Edge;
 import edu.ncsu.csc316.transportation_manager.list.AdjacencyList.Vertex;
 import edu.ncsu.csc316.transportation_manager.list.ArrayBasedList;
+import edu.ncsu.csc316.transportation_manager.util.MinimumHighwayFinder;
 
 public class TransportationManager {
 
@@ -119,7 +120,29 @@ public class TransportationManager {
 	 */
 	public String getMinimumHighways(String type)
 	{
-		return type;
-	    // Your code
+		MinimumHighwayFinder MHF = new MinimumHighwayFinder(highways, adjList, type);
+		AdjacencyList MST = MHF.getMST();
+		
+		StringBuilder sb = new StringBuilder();
+		Vertex currentV;
+		Edge currentE;
+		
+		sb.append("AdjacencyList[");
+		
+		for( int i = 0; i < MST.getVertexCount(); i++ ) {
+			
+			currentV = MST.getVertexList().lookUp(i);
+			sb.append("\n\tCity " + currentV.vertex + ":");
+			
+			for( int j = 0; j < currentV.eCount; j++ ) {
+				
+				currentE = currentV.edges.lookUp(j);
+				sb.append(" -> Highway[city1=" + currentE.endpoint1 + ", city2=" + currentE.endpoint2 + ", cost=" + currentE.costOne + ", asphalt=" + currentE.costTwo + "]");
+			}
+		}
+		
+		sb.append("\n]");
+		
+		return sb.toString();
 	}
 }
