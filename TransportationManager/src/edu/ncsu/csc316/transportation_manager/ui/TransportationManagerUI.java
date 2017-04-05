@@ -58,7 +58,7 @@ public class TransportationManagerUI {
 		while(true) {
 			
 			System.out.println("\nPlease enter \"cost\" to build a list of highways with minimal cost.");
-			System.out.println("Please enter \"ashpalt\" to build a list of highways with minimal asphalt.");
+			System.out.println("Please enter \"asphalt\" to build a list of highways with minimal asphalt.");
 			System.out.println("If you would like to exit the program, enter \"quit\".");
 			minType = inScan.nextLine();
 			
@@ -69,14 +69,16 @@ public class TransportationManagerUI {
 			}
 			else if(minType.toUpperCase().equals("COST")) {
 				
-				//manager.getMinimumHighways("COST");
-				System.out.println( manager.getAdjacencyList() );
+				System.out.println("You want a cost minimum spanning tree.");
+				manager.getMinimumHighways("COST");
+				//System.out.println( manager.getAdjacencyList() );
 				
 			}
 			else if(minType.toUpperCase().equals("ASPHALT")) {
 				
-				//manager.getMinimumHighways("ASPHALT");
-				System.out.println( manager.getAdjacencyList() );
+				System.out.println("You want an asphalt minimum spanning tree.");
+				manager.getMinimumHighways("ASPHALT");
+				//System.out.println( manager.getAdjacencyList() );
 			}
 			else {
 				

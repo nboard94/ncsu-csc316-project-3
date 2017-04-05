@@ -14,6 +14,6 @@ public class TransportationManagerTest {
 		TransportationManager tm = new TransportationManager("input/input.txt");
 		
 		String adjList = tm.getAdjacencyList();
-		String minSpan = tm.getMinimumHighways("COST");
+		//String minSpan = tm.getMinimumHighways("COST");
 	}
 }
