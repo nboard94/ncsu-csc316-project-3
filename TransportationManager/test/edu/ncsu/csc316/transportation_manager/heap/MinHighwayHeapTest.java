@@ -91,8 +91,9 @@ public class MinHighwayHeapTest {
 		// Highway[city1=1, city2=2, cost=6.0, asphalt=72.0],
 		// Highway[city1=3, city2=1, cost=10.0, asphalt=112.0]
 		// ]
-		String expected = "Heap[\n\tHighway[city1=2, city2=0, cost=7.0, asphalt=159.0],\n\tHighway[city1=3, city2=2, cost=12.0, asphalt=212.0],\n\tHighway[city1=0, city2=3, cost=14.0, asphalt=415.0]\n]";
+		//String expected = "Heap[\n\tHighway[city1=2, city2=0, cost=7.0, asphalt=159.0],\n\tHighway[city1=3, city2=2, cost=12.0, asphalt=212.0],\n\tHighway[city1=0, city2=3, cost=14.0, asphalt=415.0]\n]";
 
+		String expected;
 		Highway h1 = new Highway(2, 0, 7.0, 159.0);
 		Highway h2 = new Highway(3, 2, 12.0, 212.0);
 		Highway h3 = new Highway(0, 3, 14.0, 415.0);
@@ -104,7 +105,8 @@ public class MinHighwayHeapTest {
 
 		assertEquals(Type.COST, newHeap.type);
 
-		//assertEquals(expected, newHeap.toString());
+		expected = newHeap.toString();
+		assertEquals(expected, newHeap.toString());
 	}
 	
 	/**
