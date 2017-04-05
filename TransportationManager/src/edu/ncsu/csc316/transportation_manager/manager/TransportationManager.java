@@ -95,7 +95,7 @@ public class TransportationManager {
 		for (int i = 0; i < adjList.getVertexCount(); i++) {
 
 			currentV = adjList.getVertexList().lookUp(i);
-			sb.append("\n\tCity " + currentV.vertex + ":");
+			sb.append("\n   City " + currentV.vertex + ":");
 
 			for (int j = 0; j < currentV.eCount; j++) {
 
