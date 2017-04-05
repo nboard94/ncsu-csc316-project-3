@@ -137,10 +137,10 @@ public class TransportationManager {
 			c = minHigh.lookUp(i);
 
 			if (i == minHigh.size() - 1)
-				sb.append("\nHighway[city1=" + c.getCity1() + ", city2=" + c.getCity2() + ", cost=" + c.getCost()
+				sb.append("\n   Highway[city1=" + c.getCity1() + ", city2=" + c.getCity2() + ", cost=" + c.getCost()
 						+ ", asphalt=" + c.getAsphalt() + "]");
 			else
-				sb.append("\nHighway[city1=" + c.getCity1() + ", city2=" + c.getCity2() + ", cost=" + c.getCost()
+				sb.append("\n   Highway[city1=" + c.getCity1() + ", city2=" + c.getCity2() + ", cost=" + c.getCost()
 						+ ", asphalt=" + c.getAsphalt() + "],");
 
 		}
