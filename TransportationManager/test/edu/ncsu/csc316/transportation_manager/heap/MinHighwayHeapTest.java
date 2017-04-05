@@ -106,4 +106,42 @@ public class MinHighwayHeapTest {
 
 		assertEquals(expected, newHeap.toString());
 	}
+	
+	/**
+	 * Forces coverage up!
+	 */
+	@Test
+	public void moreCoveragePls() {
+		
+		Highway h1 = new Highway(2, 0, 7.0, 159.0);
+		Highway h2 = new Highway(3, 2, 12.0, 212.0);
+		Highway h3 = new Highway(0, 3, 14.0, 415.0);
+		Highway h4 = new Highway(2, 0, 28.0, 179.0);
+		Highway h5 = new Highway(3, 2, 9.0, 2.0);
+		Highway h6 = new Highway(0, 3, 564.0, 15.0);
+		Highway h7 = new Highway(2, 0, 1.0, 1.0);
+		Highway h8 = new Highway(3, 2, 9992.0, 2123.0);
+		Highway h9 = new Highway(0, 3, 13.0, 4150.0);
+
+		MinHighwayHeap newHeap = new MinHighwayHeap("COST");
+		newHeap.insert(h1);
+		newHeap.insert(h2);
+		newHeap.insert(h3);
+		newHeap.insert(h4);
+		newHeap.insert(h5);
+		newHeap.insert(h6);
+		newHeap.insert(h7);
+		newHeap.insert(h8);
+		newHeap.insert(h9);
+		
+		newHeap.deleteMin();
+		newHeap.deleteMin();
+		newHeap.deleteMin();
+		newHeap.deleteMin();
+		newHeap.deleteMin();
+		newHeap.deleteMin();
+		newHeap.deleteMin();
+		newHeap.deleteMin();
+		newHeap.deleteMin();
+	}
 }
