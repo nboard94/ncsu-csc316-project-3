@@ -37,15 +37,11 @@ public class MinimumHighwayFinder {
 		Highway currentMin;
 		int c1;
 		int c2;
-		double e1;
-		double e2;
 		while(upTree.size > 1) {
 			
 			currentMin = heap.deleteMin();
 			c1 = currentMin.getCity1();
 			c2 = currentMin.getCity2();
-			e1 = currentMin.getCost();
-			e2 = currentMin.getAsphalt();
 			
 			if(upTree.find(c1) != upTree.find(c2)) {
 				
