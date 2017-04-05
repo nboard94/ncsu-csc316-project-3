@@ -13,7 +13,7 @@ import edu.ncsu.csc316.transportation_manager.set.UpTree;
 public class MinimumHighwayFinder {
 	
 	/** Contains the MST. */
-	AdjacencyList minimumSpanningTree = new AdjacencyList();
+	ArrayBasedList<Highway> minimumHighways = new ArrayBasedList<Highway>();
 	
 	/**
 	 * The MinimumHighwayFinder utilizes Kruskal's Algorithm.
@@ -37,26 +37,34 @@ public class MinimumHighwayFinder {
 		Highway currentMin;
 		int c1;
 		int c2;
+		double e1;
+		double e2;
 		while(upTree.size > 1) {
 			
 			currentMin = heap.deleteMin();
 			c1 = currentMin.getCity1();
 			c2 = currentMin.getCity2();
+			e1 = currentMin.getCost();
+			e2 = currentMin.getAsphalt();
 			
 			if(upTree.find(c1) != upTree.find(c2)) {
 				
 				upTree.union(c1, c2);
+				
+				this.minimumHighways.insert(currentMin);
 			}
 		}
+		
+		
 	}
 	
 	/**
 	 * Gets the minimum spanning tree.
 	 * @return The minimum spanning tree.
 	 */
-	public AdjacencyList getMST() {
+	public ArrayBasedList<Highway> getMST() {
 		
-		return minimumSpanningTree;
+		return this.minimumHighways;
 	}
 
 }

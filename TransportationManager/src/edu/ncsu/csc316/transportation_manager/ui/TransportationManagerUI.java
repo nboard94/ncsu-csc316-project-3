@@ -69,15 +69,15 @@ public class TransportationManagerUI {
 			}
 			else if(minType.toUpperCase().equals("COST")) {
 				
-				System.out.println("You want a cost minimum spanning tree.");
-				manager.getMinimumHighways("COST");
+				//System.out.println("You want a cost minimum spanning tree.");
+				System.out.println(manager.getMinimumHighways("COST"));
 				//System.out.println( manager.getAdjacencyList() );
 				
 			}
 			else if(minType.toUpperCase().equals("ASPHALT")) {
 				
-				System.out.println("You want an asphalt minimum spanning tree.");
-				manager.getMinimumHighways("ASPHALT");
+				//System.out.println("You want an asphalt minimum spanning tree.");
+				System.out.println(manager.getMinimumHighways("ASPHALT"));
 				//System.out.println( manager.getAdjacencyList() );
 			}
 			else {
