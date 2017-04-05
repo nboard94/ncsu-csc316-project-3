@@ -39,20 +39,14 @@ public class UpTree {
 	 */
 	public int find(int p) {
 
-		while (p > -1) {
-
-			p = disjointSet.lookUp(p);
-		}
-
-		int i = 0;
-		
-		while(true) {
+		int m = 0;
+		while(p >= 0) {
 			
-			if(disjointSet.lookUp(i) == p)
-				return i;
-			else
-				i++;
+			m = p;
+			p = this.disjointSet.lookUp(p);
 		}
+		
+		return m;
 	}
 
 	/**
