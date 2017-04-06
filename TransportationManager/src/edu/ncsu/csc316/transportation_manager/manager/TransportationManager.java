@@ -129,6 +129,30 @@ public class TransportationManager {
 		ArrayBasedList<Highway> minHigh = minimumHighwayFinder.getMST();
 		StringBuilder sb = new StringBuilder();
 
+		for (int i = 0; i < minHigh.size(); i++) {
+
+			for (int j = 1; j < (minHigh.size() - i); j++) {
+
+				if (minHigh.lookUp(j).getCity1() < minHigh.lookUp(j - 1).getCity1())
+					minHigh.swap(j - 1, j);
+
+				else if (minHigh.lookUp(j).getCity1() == minHigh.lookUp(j - 1).getCity1()
+						&& minHigh.lookUp(j).getCity2() < minHigh.lookUp(j - 1).getCity2())
+					minHigh.swap(j - 1, j);
+
+				else if (minHigh.lookUp(j).getCity1() == minHigh.lookUp(j - 1).getCity1()
+						&& minHigh.lookUp(j).getCity2() == minHigh.lookUp(j - 1).getCity2()
+						&& minHigh.lookUp(j).getCost() < minHigh.lookUp(j - 1).getCost())
+					minHigh.swap(j - 1, j);
+
+				else if (minHigh.lookUp(j).getCity1() == minHigh.lookUp(j - 1).getCity1()
+						&& minHigh.lookUp(j).getCity2() == minHigh.lookUp(j - 1).getCity2()
+						&& minHigh.lookUp(j).getCost() == minHigh.lookUp(j - 1).getCost()
+						&& minHigh.lookUp(j).getAsphalt() < minHigh.lookUp(j - 1).getAsphalt())
+					minHigh.swap(j - 1, j);
+			}
+		}
+		
 		sb.append("List[");
 
 		Highway c;
